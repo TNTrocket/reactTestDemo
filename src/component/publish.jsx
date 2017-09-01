@@ -16,7 +16,7 @@ class Publish extends Component {
 
     return (
       <div>
-        Publish
+        ee
       </div>
     )
   }
