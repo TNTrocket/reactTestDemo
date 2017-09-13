@@ -29,8 +29,14 @@ module.exports =[{
   loader: 'url-loader?limit=8192&name=images/[hash:8].[name].[ext]',
   //注意后面那个limit的参数，当你图片大小小于这个限制的时候，会自动启用base64编码图
 }, {
-  test: /\.(jsx|js)$/,
-  exclude: /^node_modules$/,
+  test: /\.jsx$/,
+  exclude: /^node_modu`les$/,
   include: path.resolve(__dirname, '../src'),
   loaders: ['react-hot-loader','jsx-loader', 'babel-loader']
-}]
+},{
+  test: /\.js$/,
+  exclude: /^node_modules$/,
+  include: path.resolve(__dirname, '../src'),
+  loaders: ['react-hot-loader', 'babel-loader']
+}
+]

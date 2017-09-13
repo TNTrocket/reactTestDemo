@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "hot": "node server_hot.js",
-    "dist": "webpack --config build/webpack.config.dist.js --progress --colors --watch -p",
-    "start": "babel-watch --only src  --exclude node_modules server.js"
+    "start": "webpack --config build/webpack.config.dist.js&&babel-watch --only src  --exclude node_modules server.js"
   },
   "author": "",
   "license": "ISC",

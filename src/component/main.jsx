@@ -1,7 +1,7 @@
 import React from 'react'
 import {
   BrowserRouter as Router,
-  Route
+  Route, Switch
 } from 'react-router-dom'
 import routes from '../route/index'
 import SideNav from './sideNav'
@@ -16,6 +16,7 @@ const Main = () => (
       </Col>
 
       <Col span="18">
+        <Switch>
         {routes.map((route, index) => (
           <Route
             key={index}
@@ -24,6 +25,7 @@ const Main = () => (
             component={route.component}
           />
         ))}
+        </Switch>
       </Col>
     </Row>
   </Router>
