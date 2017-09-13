@@ -10,6 +10,7 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(bodyParser.json());
 app.use(express.static('./dist'));
+app.use(express.static('./plugin'));
 // 支持七牛上传，如有需要请配置好qn参数，如果没有qn参数则存储在本地
 app.use("/ueditor/ue", ueditor(path.join(__dirname, ''), {
   // qn: {

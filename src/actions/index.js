@@ -10,7 +10,7 @@ export const indexTypes = {
 const fetchUser = option => ({
   [CALL_API]: {
     types: Object.keys(indexTypes),
-    url: `users/`,
+    url: `/users/`,
     option: {
       data:"tnt"
     }
