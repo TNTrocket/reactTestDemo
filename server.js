@@ -1,13 +1,20 @@
 let express = require('express');
 let path = require('path');
+let bodyParser = require('body-parser')
 let app = express();
 
+
+let ueditor = require("ueditor")
+app.use(bodyParser.urlencoded({
+  extended: true
+}))
+app.use(bodyParser.json());
 app.use(express.static('./dist'));
 // 支持七牛上传，如有需要请配置好qn参数，如果没有qn参数则存储在本地
 app.use("/ueditor/ue", ueditor(path.join(__dirname, ''), {
-  qn: {
-
-  }
+  // qn: {
+  //
+  // }
 }, function(req, res, next) {
   // ueditor 客户发起上传图片请求
   let imgDir = '/dist/img/'
