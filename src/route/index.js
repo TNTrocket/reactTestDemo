@@ -5,6 +5,7 @@ import Publish from '../component/publish'
 import HelpLink from '../component/helpLink'
 import EditArticle from '../component/editArticle'
 import UnEditArticle from '../component/unEditArticle'
+import Edit from '../component/edit'
 
 const routes = [
   { path: '/',
@@ -29,5 +30,8 @@ const routes = [
   { path: '/unEditArticle',
     component: UnEditArticle,
   },
+  { path: '/edit',
+    component: Edit,
+  }
 ]
 export default  routes

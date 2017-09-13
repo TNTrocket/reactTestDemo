@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Action from '../actions/main'
 import { connect } from 'react-redux'
-import { Table } from 'antd'
+import { Table, Button } from 'antd'
 
 class AllArticle extends Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class AllArticle extends Component {
         title: '标号',
         dataIndex: 'a_id',
         key: 'a_id',
-        width:100,
+        width:80,
         className:'table-react',
       },{
         title: '文章标题',
@@ -23,7 +23,7 @@ class AllArticle extends Component {
         title: '类目',
         dataIndex: 'type',
         key: 'type',
-        width:100,
+        width:80,
         className:'table-react',
       },{
         title: '发布时间',
@@ -35,7 +35,7 @@ class AllArticle extends Component {
         title: '状态',
         dataIndex: 'a_edit_status',
         key: 'a_edit_status',
-        width:100,
+        width:50,
         className:'table-react',
         render:function (text, record, index) {
           if(record.a_edit_status == 0){
@@ -56,16 +56,40 @@ class AllArticle extends Component {
       className:'fix-footer',
       onChange:this.onPageChange.bind(this),
     };
+    this.rowSelection ={
+      type : "radio",
+      onChange: this.tableChange.bind(this)
+      // onSelect: this.tableSelect.bind(this)
+    }
   }
+  tableChange(selectedRowKeys,selectedRows){
+   // console.log("test")
+    this.setState({
+      tableDisabled : false
+    })
+  }
+  // tableSelect(record,selected,selectedRows){
+  //  console.log("sss")
+  // }
   componentWillMount() {
-
+    console.log("componentWillMount");
+    this.setState({
+      tableDisabled : true
+    })
   }
   componentDidMount(){
+    console.log("componentDidMount");
     this.props.getAllArticle();
   }
 
   componentWillReceiveProps(nextProps) {
-    // console.log("nextProps",nextProps)
+    console.log("nextProps",nextProps)
+    this.pagination = Object.assign({},
+      this.pagination,
+      {
+        total : nextProps.total,
+        showQuickJumper : true
+      })
   }
   onPageChange(curPage){
     console.log(curPage);
@@ -74,23 +98,32 @@ class AllArticle extends Component {
       page : curPage
     })
   }
+  goEdit(){
+    alert("test")
+  }
+  deleteArticle(){
+    alert("delete")
+  }
 
   render() {
     console.log("this.props.allArticleList",this.props.allArticleList)
-    this.articleList = this.props.allArticleList;
-    this.pagination = Object.assign({},
-      this.pagination,
-      {
-        total : this.props.total,
-        showQuickJumper : true
 
-      })
+    let disabled = this.state.tableDisabled;
     return (
+      <div>
       <Table
-        dataSource={this.articleList}
-        columns={this.articleColumns}
-        pagination={this.pagination}
+        dataSource = {this.props.allArticleList}
+        columns = {this.articleColumns}
+        pagination = {this.pagination}
+        rowSelection = { this.rowSelection }
       />
+        <Button disabled={ disabled } onClick={ this.goEdit.bind(this) }>
+          修改
+        </Button>
+        <Button style={{marginLeft:30+'px'}} disabled={ disabled } onClick={ this.deleteArticle.bind(this) }>
+          删除
+        </Button>
+      </div>
     )
   }
 }

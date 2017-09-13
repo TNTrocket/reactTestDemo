@@ -1,4 +1,4 @@
-const API_ROOT = 'http://m.51xuanshi.com'
+const API_ROOT = 'http://localhost'
 
 
 const callApi = (url, option) => {
@@ -21,7 +21,25 @@ const callApi = (url, option) => {
     )
 }
 
+function getSearchParams(options) {
+  options = options || {};
+  let searchParam = new URLSearchParams();
 
+  Object.keys(options).forEach( key => {
+    let value = options[key];
+    //对非基本类型的数据进行预处理
+    if (typeof value === "object") {
+      if (value["_isAMomentObject"]) {
+        // value = moment(value).format("YYYY-MM-DD HH:mm:ss");
+        value = moment(value);
+      } else {
+        value = JSON.stringify(value);
+      }
+    }
+    searchParam.append(key, value);
+  })
+  return searchParam;
+}
 
 
 export const CALL_API = 'Call API'

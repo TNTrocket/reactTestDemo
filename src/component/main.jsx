@@ -10,8 +10,8 @@ import '../static/css/style.less'
 
 const Main = () => (
   <Router>
-    <Row gutter={16} style={{marginTop:50+'px'}}>
-      <Col span="6">
+    <Row gutter={16}>
+      <Col span="5">
         <SideNav/>
       </Col>
 
