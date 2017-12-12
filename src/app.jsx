@@ -4,6 +4,9 @@ import { Provider } from 'react-redux';
 import store from './store/configureStore';
 import Root from './route/routes'
 
+if (module.hot) {
+    module.hot.accept();
+}
 
 render(
   <Provider store={store}>
